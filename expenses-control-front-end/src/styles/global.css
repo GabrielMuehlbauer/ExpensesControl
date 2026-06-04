@@ -1,6 +1,29 @@
+/* Configurações das Fontes */
+/*Libre Baskerville*/
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+}
+/*Neue Machina*/
+@font-face {
+  font-family: 'Neue Machina';
+  src: url('../assets/fonts/Neue_Machina/PPNeueMachina-InktrapRegular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+/*DM Sans*/
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+  src: url('../assets/fonts/DM_Sans/DMSans-VariableFont_opsz\,wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
 }
@@ -17,9 +40,9 @@
   --light-gray: #f2f2f2;
 
   /* Variáveis de Tipografia */
-  --font-primary: 'DM Sans', sans-serif;
-  --font-secondary: 'Libre Baskerville', serif;
-  --font-accent: 'Neue Machina', 'DM Sans', sans-serif;
+  --font-family-header: 'Libre Baskerville', serif;
+  --font-family-body: 'DM Sans', sans-serif;
+  --font-family-accent: 'Neue Machina', monospace;
 }
 
 /* Reset CSS Básico para garantir consistência */

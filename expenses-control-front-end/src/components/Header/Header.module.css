@@ -1,0 +1,25 @@
+.headerContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.headerContent img {
+    max-width: 150px;
+}
+
+.totalValueContainer {
+    text-align: right;
+    color: var(--faded-yellowish-green);
+}
+
+.totalValueContainer p {
+    font-family: var(--font-family-accent);
+    font-size: 14px;
+}
+
+.totalValueContainer h2 {
+    font-family: var(--font-family-header);
+    font-weight: 400;
+}

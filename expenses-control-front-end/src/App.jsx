@@ -1,9 +1,11 @@
+import Dashboard from "./pages/Dashboard/Dashboard";
+import './styles/global.css';
+
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      
+      <Dashboard />
     </>
   )
 }
