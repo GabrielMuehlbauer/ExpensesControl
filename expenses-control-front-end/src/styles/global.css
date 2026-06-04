@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+/* Configuração do Tema Global */
+:root {
+  /* Paleta de Cores do Expenses Control */
+  --dark-gray: #353535;
+  --faded-yellowish-green: #535a38;
+  --light-faded-yellowish-green: #889360;
+  --yellowish-green: #abd035;
+  --pastel-yellowish-green: #cde188;
+  --light-yellowish-green: #d9e2ba;
+  --light-gray: #f2f2f2;
+
+  /* Variáveis de Tipografia */
+  --font-primary: 'DM Sans', sans-serif;
+  --font-secondary: 'Libre Baskerville', serif;
+  --font-accent: 'Neue Machina', 'DM Sans', sans-serif;
+}
+
+/* Reset CSS Básico para garantir consistência */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+}
+
+button {
+  font-family: var(--font-primary);
+  cursor: pointer;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
