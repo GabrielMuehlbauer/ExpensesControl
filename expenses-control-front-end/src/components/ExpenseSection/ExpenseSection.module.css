@@ -1,0 +1,48 @@
+.expenseSection {
+    background-color: var(--faded-yellowish-green);
+    color: var(--light-yellowish-green);
+    width: 100%;
+    max-width: 100%;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+}
+
+.expenseSection h2 {
+    margin-bottom: 15px;
+    font-family: var(--font-family-header);
+    font-weight: 600;
+    font-style: italic;
+}
+
+.expenseSectionContent {
+    width: 100%;
+}
+
+.containerRows {
+    max-height: 200px;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-right: 15px; /* Espaço para a barra de rolagem */
+}
+
+/* Personalização da barra de scroll*/
+.containerRows::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.containerRows::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.containerRows::-webkit-scrollbar-thumb {
+    background: var(--light-faded-yellowish-green);
+    border-radius: 10px;
+}

@@ -1,3 +1,15 @@
 .dashboardContent {
     padding: 25px;
 }
+
+.dashboardSections {
+    display: flex;
+    gap: 25px;
+}
+
+/* Media query para telas menores (ex: 768px ou menos) */
+@media (max-width: 768px) {
+    .dashboardSections {
+        flex-direction: column; /* Empilha as seções verticalmente */
+    }
+}

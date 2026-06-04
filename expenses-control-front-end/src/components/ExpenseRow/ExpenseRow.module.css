@@ -1,0 +1,41 @@
+.expenseRow {
+    background-color: var(--light-gray);
+    color: var(--faded-yellowish-green);
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.expenseRowContent h2 {
+    font-family: var(--font-family-accent);
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-style: normal;
+}
+
+.expenseRowContent p {
+    font-family: var(--font-family-accent);
+    font-weight: 400;
+    text-align: right;
+}
+
+.expenseRowContent div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.categoryTag {
+    background-color: var(--pastel-yellowish-green);
+    color: var(--faded-yellowish-green);
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 20px;
+}
+
+.expenseValue {
+    color: var(--faded-yellowish-green);
+    font-family: var(--font-family-header) !important;
+    font-weight: 400;
+    font-size: 25px;
+}

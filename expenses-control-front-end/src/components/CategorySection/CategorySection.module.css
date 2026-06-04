@@ -1,7 +1,7 @@
 .categorySection {
     background-color: var(--light-yellowish-green);
     color: var(--faded-yellowish-green);
-    width: 100%;
+    min-width: 50%;
     max-width: 100%;
     padding: 25px;
     display: flex;
