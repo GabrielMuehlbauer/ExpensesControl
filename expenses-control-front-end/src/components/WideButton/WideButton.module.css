@@ -1,0 +1,25 @@
+.wideButton {
+  width: 100%;
+  padding: 15px;
+  margin: 20px 0;
+  font-family: var(--font-family-accent);
+  font-size: 16px;
+  background-color: var(--pastel-yellowish-green);
+  color: var(--faded-yellowish-green);
+  border: 2px solid transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.wideButton:hover {
+  background-color: var(--pastel-yellowish-green);
+  color: var(--dark-gray);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.wideButton:active {
+  background-color: var(--yellowish-green);
+  color: var(--dark-gray);
+  border: 2px solid var(--faded-yellowish-green);
+}

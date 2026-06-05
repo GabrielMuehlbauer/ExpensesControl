@@ -31,7 +31,14 @@ function ExpenseSection({ expenses }) {
     return (
         <section className={styles.expenseSection}>
             <div className={styles.expenseSectionContent}>
-                <h2>Minhas despesas</h2>
+                <div className={styles.expenseSectionHeader}>
+                    <h2>Minhas despesas</h2>
+                    <div className={styles.filterButton}>
+                        <span className="material-symbols-outlined">
+                            tune
+                        </span>
+                    </div>
+                </div>
                 <div className={styles.containerRows}>
                     {despesas.map((despesa) => (
                         <ExpenseRow

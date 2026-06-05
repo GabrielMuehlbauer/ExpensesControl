@@ -3,6 +3,7 @@ import styles from './Dashboard.module.css';
 import Header from '../../components/Header/Header';
 import CategorySection from '../../components/CategorySection/CategorySection';
 import ExpenseSection from '../../components/ExpenseSection/ExpenseSection';
+import WideButton from '../../components/WideButton/WideButton';
 
 function Dashboard() {
 
@@ -16,6 +17,7 @@ function Dashboard() {
                     <CategorySection />
                     <ExpenseSection />
                 </div>
+                <WideButton text='Criar Despesa +' />
             </main>
         </>
     )

@@ -16,10 +16,56 @@
     font-family: var(--font-family-header);
     font-weight: 600;
     font-style: italic;
+    display: contents;
 }
 
 .expenseSectionContent {
     width: 100%;
+}
+
+.expenseSectionHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filterButton {
+    color: var(--light-yellowish-green);
+    padding: 9px 10px 8px 10px;
+    border-radius: 25px;
+    border: 1px solid var(--light-yellowish-green);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filterButton:hover {
+    background-color: var(--pastel-yellowish-green);
+    color: var(--faded-yellowish-green);
+}
+
+.filterButton:active {
+    background-color: var(--yellowish-green);
+    color: var(--faded-yellowish-green);
+    border: 1px solid var(--faded-yellowish-green);
+}
+
+.filterBadge {
+    background-color: var(--light-yellowish-green);
+    color: var(--faded-yellowish-green);
+    font-family: var(--font-family-accent);
+    font-size: 14px;
+    font-weight: 700;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .containerRows {
