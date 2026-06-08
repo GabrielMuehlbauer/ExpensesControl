@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label {
+    font-family: var(--font-family-accent);
+    color: var(--faded-yellowish-green);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.input {
+    padding: 10px 15px;
+    width: 100%;
+    border-radius: 25px;
+    border: 1px solid var(--light-yellowish-green);
+    background-color: var(--light-gray);
+    color: var(--faded-yellowish-green);
+    font-family: var(--font-family-body);
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input:focus {
+    outline: 1px solid var(--yellowish-green);
+    border-color: var(--yellowish-green);
+    background-color: var(--light-yellowish-green);
+    color: var(--faded-yellowish-green);
+}

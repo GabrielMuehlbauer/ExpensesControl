@@ -1,8 +1,8 @@
 import styles from './WideButton.module.css';
 
-function WideButton({ text, onClick }) {
+function WideButton({ text, onClick, ...props }) {
     return (
-        <button className={styles.wideButton} onClick={onClick}>
+        <button className={styles.wideButton} onClick={onClick} {...props}>
             {text}
         </button>
     );
