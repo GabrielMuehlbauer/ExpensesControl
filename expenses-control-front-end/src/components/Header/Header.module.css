@@ -6,12 +6,13 @@
 }
 
 .headerContent img {
-    max-width: 150px;
+    max-width: 100px;
 }
 
 .totalValueContainer {
     text-align: right;
     color: var(--faded-yellowish-green);
+    padding-top: 10px;
 }
 
 .totalValueContainer p {
