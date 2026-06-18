@@ -1,14 +1,14 @@
 import styles from './ExpenseRow.module.css';
 
-function ExpenseRow({ titulo, categoria, data, valor, onClick }) {
+function ExpenseRow({ title, category, date, amount, description, onClick, onExpenseClick }) {
     return (
         <div className={styles.expenseRow} onClick={onClick}>
             <div className={styles.expenseRowContent}>
-                <h2>{titulo}</h2>
-                <p>{data}</p>
+                <h2>{title}</h2>
+                <p>{date}</p>
                 <div>
-                    <p className={styles.categoryTag}>{categoria}</p>
-                    <p className={styles.expenseValue}>R${valor.toFixed(2).replace('.', ',')}</p>
+                    <p className={styles.categoryTag}>{category}</p>
+                    <p className={styles.expenseValue}>R${Number(amount || 0).toFixed(2).replace('.', ',')}</p>
                 </div>
             </div>
         </div>

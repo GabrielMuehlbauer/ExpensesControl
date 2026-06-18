@@ -13,3 +13,17 @@
     overflow-y: auto;
     padding-right: 4px;
 }
+
+.header {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    padding-bottom: 15px;
+}
+
+.title {
+    font-family: var(--font-family-header);
+    color: var(--faded-yellowish-green);
+    font-size: 40px;
+    font-weight: 500;
+}

@@ -2,29 +2,30 @@ import { useState } from 'react';
 import styles from './ExpenseSection.module.css';
 import ExpenseRow from '../ExpenseRow/ExpenseRow';
 
-function ExpenseSection({ expenses }) {
+function ExpenseSection({ expenses, onExpenseClick }) {
 
     const [despesas, setDespesas] = useState([
         {
             id: 1,
-            titulo: "Compras para o churras de sábado",
-            categoria: "Supermercado",
-            data: "06/04/2026",
-            valor: 114.30
+            title: "Compras para o churras de sábado",
+            category: "Supermercado",
+            date: "06/04/2026",
+            amount: 114.30,
+            description: "Comprei churrasco, carvão, sal de parrilha e pão de alho para o churrasco dos amigos no sábado."
         },
         {
             id: 2,
-            titulo: "Cinema com os amigos",
-            categoria: "Lazer",
-            data: "10/04/2026",
-            valor: 45.00
+            title: "Cinema com os amigos",
+            category: "Lazer",
+            date: "10/04/2026",
+            amount: 45.00
         },
         {
             id: 3,
-            titulo: "Conta de luz - Abril",
-            categoria: "Conta de Luz",
-            data: "15/04/2026",
-            valor: 89.55
+            title: "Conta de luz - Abril",
+            category: "Conta de Luz",
+            date: "15/04/2026",
+            amount: 89.55
         },
     ]);
 
@@ -43,10 +44,12 @@ function ExpenseSection({ expenses }) {
                     {despesas.map((despesa) => (
                         <ExpenseRow
                             key={despesa.id}
-                            titulo={despesa.titulo}
-                            categoria={despesa.categoria}
-                            data={despesa.data}
-                            valor={despesa.valor}
+                            title={despesa.title}
+                            category={despesa.category}
+                            date={despesa.date}
+                            description={despesa.description}
+                            amount={despesa.amount}
+                            onClick={() => onExpenseClick(despesa)}
                         />
                     ))}
                 </div>

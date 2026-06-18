@@ -1,0 +1,52 @@
+.loadingDisplay {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.loadingDisplay img {
+    max-width: 50px;
+    
+}
+
+.loadingContent {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-family-accent);
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: var(--font-family-header);
+    font-size: 35px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.date {
+    font-family: var(--font-family-accent);
+    text-align: right;
+}
+
+.content {
+    margin-bottom: 25px;
+}
+
+.description {
+    font-family: var(--font-family-body);
+    text-align: justify;
+}
+
+.amountContainer {
+    background-color: var(--light-yellowish-green);
+    text-align: center;
+}

@@ -29,6 +29,9 @@ function ExpenseForm({ onClose }) {
 
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.header}>
+                <h2 className={styles.title}><i>Criar</i> Despesa</h2>
+            </div>
             <div className={styles.inputGroup}>
                 <Input label="Título da Despesa:" type="text" placeholder="Ex: Compras do mês de maio" value={title} onChange={(e) => setTitle(e.target.value)} required/>
                 <Input label="Data da Despesa:" type="date" value={date} onChange={(e) => setDate(e.target.value)} required/>

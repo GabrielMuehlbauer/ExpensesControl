@@ -16,6 +16,7 @@
   background-color: var(--pastel-yellowish-green);
   color: var(--dark-gray);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid var(--light-faded-yellowish-green);
 }
 
 .wideButton:active {
