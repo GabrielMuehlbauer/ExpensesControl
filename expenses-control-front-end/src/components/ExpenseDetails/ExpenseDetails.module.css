@@ -49,4 +49,40 @@
 .amountContainer {
     background-color: var(--light-yellowish-green);
     text-align: center;
+    padding: 25px 0;
+    margin-bottom: 10px;
+    border-radius: 25px;
+    border: 1px solid var(--faded-yellowish-green);
+}
+
+.amountLabel {
+    font-family: var(--font-family-accent);
+}
+
+.amountValue {
+    font-family: var(--font-family-header);
+    font-weight: 400;
+    font-size: 35px;
+}
+
+.categoryTag {
+    background-color: var(--pastel-yellowish-green);
+    text-align: center;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+.categoryTag h4 {
+    font-family: var(--font-family-accent);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions button {
+    padding: 15px;
 }
