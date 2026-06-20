@@ -1,5 +1,7 @@
 import styles from './ExpenseDetails.module.css';
 import loading from '../../assets/images/loading-blocks.gif';
+import edit from '../../assets/images/edit.svg';
+import trash from '../../assets/images/delete.svg';
 
 function ExpenseDetails({ expense, onClose }) {
   // Proteção: Se por algum motivo o componente abrir sem uma despesa, não deixa o app crashar
@@ -40,10 +42,10 @@ function ExpenseDetails({ expense, onClose }) {
       {/* Botões de Ação para o CRUD completo (Editar e Eliminar) */}
       <div className={styles.actions}>
         <button className={styles.editButton}>
-          <span class="material-symbols-outlined">edit</span>
+          <img src={edit} alt="" />
         </button>
         <button className={styles.deleteButton}>
-          <span class="material-symbols-outlined">delete</span>
+          <img src={trash} alt="" />
         </button>
       </div>
 
