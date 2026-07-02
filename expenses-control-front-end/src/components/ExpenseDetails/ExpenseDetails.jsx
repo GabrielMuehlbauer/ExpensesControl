@@ -2,8 +2,9 @@ import styles from './ExpenseDetails.module.css';
 import loading from '../../assets/images/loading-blocks.gif';
 import edit from '../../assets/images/edit.svg';
 import trash from '../../assets/images/delete.svg';
+import api from '../../services/api';
 
-function ExpenseDetails({ expense, onClose }) {
+function ExpenseDetails({ expense, onClose, onExpenseDeleted }) {
   // Proteção: Se por algum motivo o componente abrir sem uma despesa, não deixa o app crashar
   if (!expense) return (
     <>
@@ -15,6 +16,26 @@ function ExpenseDetails({ expense, onClose }) {
       </div>
     </>
   );
+
+  async function handleDelete() {
+    // Confirmação antes de deletar
+    const isConfirmed = window.confirm(`Tem certeza que deseja excluir a despesa "${expense.title}"?`);
+
+    if (isConfirmed) {
+      try {
+        // Adicionando o prefixo /api para a chamada
+        await api.delete(`/expenses/${expense.id}`);
+        alert('Despesa excluída com sucesso!');
+        if (onExpenseDeleted) {
+          onExpenseDeleted(); // Avisa o Dashboard que a despesa foi removida
+        }
+        onClose(); // Fecha o modal
+      } catch (error) {
+        console.error("Erro ao excluir despesa:", error);
+        alert("Não foi possível excluir a despesa.");
+      }
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -36,7 +57,8 @@ function ExpenseDetails({ expense, onClose }) {
       </div>
 
       <div className={styles.categoryTag}>
-        <h4>{expense.category}</h4>
+        {/* A API retorna um objeto, então acessamos a propriedade 'name' */}
+        <h4>{expense.category?.name}</h4>
       </div>
 
       {/* Botões de Ação para o CRUD completo (Editar e Eliminar) */}
@@ -44,7 +66,7 @@ function ExpenseDetails({ expense, onClose }) {
         <button className={styles.editButton}>
           <img src={edit} alt="" />
         </button>
-        <button className={styles.deleteButton}>
+        <button className={styles.deleteButton} onClick={handleDelete}>
           <img src={trash} alt="" />
         </button>
       </div>

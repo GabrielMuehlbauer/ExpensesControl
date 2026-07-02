@@ -16,25 +16,68 @@ function Dashboard() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedExpense, setSelectedExpense] = useState(null);
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+    const [allCategories, setAllCategories] = useState([]);
+    const [categoryTotals, setCategoryTotals] = useState([]);
+    const [expenses, setExpenses] = useState([]);
+    const [loading, setLoading] = useState(true);
     
     // useEffect dispara assim que a tela abre
     useEffect(() => {
         async function fetchDashboardData() {
+            setLoading(true);
             try {
-                // Substitua pelas rotas corretas que você criou no Node.js
-                const response = await api.get('/dashboard/total-expenses');
-                setTotalGasto(response.data.total); // Ajuste de acordo com o retorno da sua API
+                // Usamos Promise.all para buscar os dados em paralelo, melhorando a performance
+                const [totalResponse, categoriesResponse, categoryTotalsResponse, expensesResponse] = await Promise.all([
+                    api.get('/dashboard/total-expenses'), // Rota para o total de gastos, como você confirmou
+                    api.get('/categories'),                // Rota para a lista de todas as categorias
+                    api.get('/dashboard/expenses-by-category'), // Rota para os totais
+                    api.get('/expenses')
+                ]);
+
+                setTotalGasto(totalResponse.data.total);
+                setAllCategories(categoriesResponse.data);
+                // Ajuste para ser mais robusto: aceita tanto um objeto {categorias: []} quanto um array [] diretamente.
+                // Se .categorias existir, usa ele. Senão, tenta usar o .data inteiro. Se nada funcionar, usa um array vazio.
+                setCategoryTotals(categoryTotalsResponse.data.categorias || categoryTotalsResponse.data || []);
+                setExpenses(expensesResponse.data);
+
             } catch (error) {
                 console.error("Erro ao buscar dados do dashboard:", error);
+            } finally {
+                setLoading(false);
             }
         }
         fetchDashboardData();
     }, []);
 
+    // Função para ser chamada quando uma nova despesa for adicionada
+    function handleExpenseAdded() {
+        setIsModalOpen(false); // Fecha o modal
+        // Atualiza os dados do dashboard (isso pode ser otimizado no futuro)
+        // Por enquanto, vamos simular a atualização buscando tudo de novo
+        window.location.reload(); // Temporário até o estado global ser implementado
+        // Idealmente: fetchDashboardData(); e uma função para recarregar as despesas em ExpenseSection
+    }
+
+    function handleExpenseDeleted() {
+        setIsDetailsModalOpen(false);
+        // A mesma lógica de recarga se aplica aqui
+        window.location.reload();
+    }
+
     // Função atualizada para simular a API
     function handleOpenDetails(expense) {
+        // O objeto 'expense' que vem do ExpenseSection só tem o 'categoryId'.
+        // Precisamos encontrar o objeto da categoria completo na nossa lista de 'categories'.
+        const category = allCategories.find(cat => cat.id === expense.categoryId);
+
+        // Criamos um novo objeto de despesa que inclui os detalhes da categoria.
+        const expenseWithCategoryDetails = {
+            ...expense,
+            category: category || { name: 'Não encontrada' } // Adiciona um fallback caso a categoria não seja encontrada
+        };
         setIsDetailsModalOpen(true);
-        setSelectedExpense(expense);   
+        setSelectedExpense(expenseWithCategoryDetails);   
     }
 
     function handleCloseDetails() {
@@ -46,12 +89,12 @@ function Dashboard() {
             <main className={styles.dashboardContent}>
                 <Header valorTotal={totalGasto} />
                 <div className={styles.dashboardSections}>
-                    <CategorySection />
-                    <ExpenseSection onExpenseClick={handleOpenDetails} />
+                    <CategorySection allCategories={allCategories} categoryTotals={categoryTotals} loading={loading} />
+                    <ExpenseSection onExpenseClick={handleOpenDetails} categories={allCategories} expenses={expenses} loading={loading} />
                 </div>
                 <WideButton text='Criar Despesa +' onClick={() => setIsModalOpen(true)} />
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                    <ExpenseForm onClose={() => setIsModalOpen(false)} />
+                    <ExpenseForm onClose={() => setIsModalOpen(false)} onExpenseAdded={handleExpenseAdded} />
                 </Modal>
 
                 <Modal isOpen={isDetailsModalOpen} onClose={handleCloseDetails}>
@@ -59,6 +102,7 @@ function Dashboard() {
                     <ExpenseDetails
                         expense={selectedExpense}
                         onClose={handleCloseDetails}
+                        onExpenseDeleted={handleExpenseDeleted}
                     />
                 </Modal>
             </main>

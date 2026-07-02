@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 import WideButton from "../WideButton/WideButton";
 import Select from "../Select/Select";
 
-function ExpenseForm({ onClose }) {
+function ExpenseForm({ onClose, onExpenseAdded }) {
     // 1. Estados dos inputs
     const [title, setTitle] = useState("");
     const [amount, setAmount] = useState("");
@@ -56,16 +56,19 @@ function ExpenseForm({ onClose }) {
             // Dispara para a API
             await api.post('/expenses', newExpense);
             
+            if (onExpenseAdded) {
+                onExpenseAdded();
+            }
+
             if (onClose) {
                 onClose(); 
             }
-            
-            // O "Truque" do MVP: Recarrega a página para o Dashboard puxar a nova despesa
-            window.location.reload(); 
 
         } catch (error) {
-            console.error("Erro ao salvar despesa:", error);
-            alert("Erro ao adicionar despesa. Verifique os dados.");
+            // Melhora no tratamento de erro para dar feedback específico da API
+            const apiError = error.response?.data?.error;
+            console.error("Erro ao salvar despesa:", apiError || error);
+            alert(apiError || "Erro ao adicionar despesa. Verifique se todos os campos estão preenchidos corretamente.");
         } finally {
             setLoading(false);
         }

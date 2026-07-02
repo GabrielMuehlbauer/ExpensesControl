@@ -20,13 +20,13 @@ export function AuthProvider({ children }) {
 
   async function signIn(email, password) {
     try {
-      const response = await api.post('/auth/login', { email, password });
+      const response = await api.post('/login', { email, password });
       
       // Vamos capturar toda a resposta para garantir
       const data = response.data;
       
       // Pega o token de onde ele vier (seja data.token ou apenas data)
-      const token = data.token || data; 
+      const token = data.token;
 
       const loggedUser = data.user || data.usuario || { email: email };
 

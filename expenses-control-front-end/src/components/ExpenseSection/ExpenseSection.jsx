@@ -3,27 +3,7 @@ import api from '../../services/api';
 import styles from './ExpenseSection.module.css';
 import ExpenseRow from '../ExpenseRow/ExpenseRow';
 
-// 2. Removido o 'expenses' das props, pois agora o componente busca na API
-function ExpenseSection({ onExpenseClick }) {
-
-    const [expenses, setExpenses] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        async function fetchExpenses() {
-            try {
-                // Chama a rota que lista as despesas do Back-End
-                const response = await api.get('/expenses');
-                setExpenses(response.data); 
-            } catch (error) {
-                console.error("Erro ao buscar despesas:", error);
-            } finally {
-                setLoading(false);
-            }
-        }
-        fetchExpenses();
-    }, []);
+function ExpenseSection({ onExpenseClick, categories, expenses, loading }) {
 
     return (
         <section className={styles.expenseSection}>
@@ -38,20 +18,25 @@ function ExpenseSection({ onExpenseClick }) {
                 </div>
                 <div className={styles.containerRows}>
                     {/* 3. Ajustado para exibir algo enquanto carrega e corrigido 'despesas' para 'expenses' */}
-                    {loading ? (
+                    {loading ? ( 
                         <p>Carregando...</p>
                     ) : expenses.length > 0 ? (
-                        expenses.map((expense) => (
-                            <ExpenseRow
+                        expenses.map((expense) => {
+                            // Para cada despesa, encontramos o objeto da categoria correspondente
+                            const categoryObject = categories.find(cat => cat.id === expense.categoryId);
+
+                            return (
+                                <ExpenseRow
                                 key={expense.id}
                                 title={expense.title}
-                                category={expense.category} 
+                                // Passamos o objeto da categoria encontrado. Se não encontrar, passa um fallback.
+                                category={categoryObject || { name: 'Sem Categoria' }}
                                 date={new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(expense.date))}
                                 description={expense.description}
                                 amount={expense.amount}
                                 onClick={() => onExpenseClick(expense)}
                             />
-                        ))
+                        )})
                     ) : (
                         <p style={{ color: '#888' }}>Nenhuma despesa registrada.</p>
                     )}

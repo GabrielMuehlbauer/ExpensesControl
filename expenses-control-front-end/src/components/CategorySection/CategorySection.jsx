@@ -3,27 +3,7 @@ import api from '../../services/api';
 import styles from './CategorySection.module.css';
 import CategoryCard from '../CategoryCard/CategoryCard';
 
-function CategorySection() {
-
-    const [categories, setCategories] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchCategories = async () => {
-            setLoading(true);
-            try {
-                const response = await api.get('/dashboard/expenses-by-category');
-                setCategories(response.data);
-            } catch (error) {
-                console.error('Error fetching categories:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchCategories();
-    }, []);
-
+function CategorySection({ allCategories = [], categoryTotals = [], loading }) {
     return (
         <section className={styles.categorySection}>
             <div className={styles.categorySectionContent}>
@@ -31,14 +11,33 @@ function CategorySection() {
                 <div className={styles.containerCards}>
                     {loading ? (
                         <p>Carregando...</p>
-                    ) : categories.length > 0 ? (
-                        categories.map((category) => (
-                            <CategoryCard
-                                key={category.id}
-                                nome={category.categoria}
-                                valor={category.total}
-                            />
-                        ))
+                    ) : allCategories.length > 0 ? (
+                        allCategories.map((category) => {
+                            // Para cada categoria da lista completa, procuramos seu total correspondente.
+                            const totalInfo = categoryTotals.find(
+                                (total) => {
+                                    // Lógica de comparação mais robusta para evitar erros se as propriedades não existirem.
+                                    // Compara os nomes ignorando maiúsculas/minúsculas e acentos.
+                                    if (!total?.categoria || !category?.name) return false;
+
+                                    const normalizedTotalCategoria = total.categoria.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+                                    const normalizedCategoryName = category.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+                                    return normalizedTotalCategoria === normalizedCategoryName;
+                                }
+                            );
+
+                            // Garante que o valor seja um número, mesmo que a propriedade 'total' não venha ou não seja um número.
+                            const valor = (totalInfo && typeof totalInfo.total === 'number') ? totalInfo.total : 0;
+
+                            return (
+                                <CategoryCard
+                                    key={category.id}
+                                    nome={category.name}
+                                    valor={valor}
+                                />
+                            );
+                        })
                     ) : (
                         <p>Nenhuma categoria registrada.</p>
                     )}
