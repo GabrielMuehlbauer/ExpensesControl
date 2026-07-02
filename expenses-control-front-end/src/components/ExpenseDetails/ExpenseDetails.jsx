@@ -22,7 +22,7 @@ function ExpenseDetails({ expense, onClose }) {
       {/* Cabeçalho com o botão de fechar e a Categoria estilo "tag" */}
       <div className={styles.header}>
         <h2 className={styles.title}>{expense.title}</h2>
-        <p className={styles.date}>{expense.date}</p>
+        <p className={styles.date}>{new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(expense.date))}</p>
       </div>
 
       <div className={styles.content}>

@@ -7,7 +7,7 @@ function ExpenseRow({ title, category, date, amount, description, onClick, onExp
                 <h2>{title}</h2>
                 <p>{date}</p>
                 <div>
-                    <p className={styles.categoryTag}>{category}</p>
+                    <p className={styles.categoryTag}>{category?.name || category}</p>
                     <p className={styles.expenseValue}>R${Number(amount || 0).toFixed(2).replace('.', ',')}</p>
                 </div>
             </div>

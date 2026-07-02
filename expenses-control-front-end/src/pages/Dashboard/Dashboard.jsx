@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '../../components/Modal/Modal';
 import styles from './Dashboard.module.css';
 import Header from '../../components/Header/Header';
@@ -8,26 +8,33 @@ import WideButton from '../../components/WideButton/WideButton';
 import Input from '../../components/Input/Input';
 import ExpenseForm from '../../components/ExpenseForm/ExpenseForm';
 import ExpenseDetails from '../../components/ExpenseDetails/ExpenseDetails';
+import api from '../../services/api';
 
 function Dashboard() {
 
-    const [totalGasto, setTotalGasto] = useState(427.85);
+    const [totalGasto, setTotalGasto] = useState(0);
     const [isModalOpen, setIsModalOpen] = useState(false);
-
     const [selectedExpense, setSelectedExpense] = useState(null);
-
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
-    // (Mantenha o seu const [selectedExpense, setSelectedExpense] = useState(null);)
+    
+    // useEffect dispara assim que a tela abre
+    useEffect(() => {
+        async function fetchDashboardData() {
+            try {
+                // Substitua pelas rotas corretas que você criou no Node.js
+                const response = await api.get('/dashboard/total-expenses');
+                setTotalGasto(response.data.total); // Ajuste de acordo com o retorno da sua API
+            } catch (error) {
+                console.error("Erro ao buscar dados do dashboard:", error);
+            }
+        }
+        fetchDashboardData();
+    }, []);
 
     // Função atualizada para simular a API
     function handleOpenDetails(expense) {
-        setIsDetailsModalOpen(true); // 1. Abre o modal imediatamente
-        setSelectedExpense(null);    // 2. Limpa os dados antigos (o que ativa o seu Loading!)
-
-        // 3. Simula que o Back-End demorou 1.5 segundos para responder
-        setTimeout(() => {
-            setSelectedExpense(expense); // 4. Os dados chegam, o Loading some e a despesa aparece!
-        }, 3500);
+        setIsDetailsModalOpen(true);
+        setSelectedExpense(expense);   
     }
 
     function handleCloseDetails() {

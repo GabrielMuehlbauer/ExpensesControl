@@ -81,8 +81,21 @@
 .actions {
     display: flex;
     justify-content: space-between;
+    margin-top: 15px;
 }
 
 .actions button {
-    padding: 15px;
+    padding: 15px 70px;
+    border-radius: 30px;
+    border: 1px solid var(--faded-yellowish-green);
+}
+
+.deleteButton {
+    background-color: #993f3f;
+    border: 1px solid var(--faded-yellowish-green);
+}
+
+.editButton {
+    background-color: var(--faded-yellowish-green);
+    border: 1px solid var(--faded-yellowish-green);
 }
