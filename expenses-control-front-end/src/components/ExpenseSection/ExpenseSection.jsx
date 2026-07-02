@@ -10,6 +10,9 @@ function ExpenseSection({ onExpenseClick, categories, expenses, loading }) {
             <div className={styles.expenseSectionContent}>
                 <div className={styles.expenseSectionHeader}>
                     <h2>Minhas despesas</h2>
+                    <span className={styles.expenseCount}>
+                            Total: {expenses.length}
+                        </span>
                     <div className={styles.filterButton}>
                         <span className="material-symbols-outlined">
                             tune

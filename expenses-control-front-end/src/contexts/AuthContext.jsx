@@ -20,7 +20,7 @@ export function AuthProvider({ children }) {
 
   async function signIn(email, password) {
     try {
-      const response = await api.post('/login', { email, password });
+      const response = await api.post('/auth/login', { email, password });
       
       // Vamos capturar toda a resposta para garantir
       const data = response.data;
