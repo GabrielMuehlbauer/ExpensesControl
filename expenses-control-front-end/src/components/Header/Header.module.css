@@ -13,6 +13,8 @@
     text-align: right;
     color: var(--faded-yellowish-green);
     padding-top: 10px;
+    display: flex;
+    gap: 25px;
 }
 
 .totalValueContainer p {
@@ -23,4 +25,25 @@
 .totalValueContainer h2 {
     font-family: var(--font-family-header);
     font-weight: 400;
+}
+
+header button {
+    border: 1px solid var(--faded-yellowish-green);
+    padding: 9px 10px 7px 10px;
+    border-radius: 25px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+header button img {
+    width: 25px;
+}
+
+.logoutText {
+    margin-left: 5px;
+    font-family: var(--font-family-accent);
+    font-size: 14px;
 }

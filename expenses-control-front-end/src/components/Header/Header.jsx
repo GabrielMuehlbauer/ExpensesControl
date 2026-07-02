@@ -11,16 +11,22 @@ function Header({ valorTotal }) {
     return (
         <header className={styles.headerContent}>
             <img src={logoExpensesControl} alt="logo" />
-            <button
+            
+            <div className={styles.totalValueContainer}>
+                <div className={styles.logoutContainer}>
+                <button
                 onClick={signOut}
                 title="Sair do sistema"
                 className={styles.logoutButton}
             >
                 <img src={logout} alt="Sair" />
+                <span className={styles.logoutText}>Sair</span>
             </button>
-            <div className={styles.totalValueContainer}>
+            </div>
+            <div>
                 <p>Total Gasto</p>
                 <h2 className={styles.totalValue}>R${valorTotal.toFixed(2).replace('.', ',')}</h2>
+                </div>
             </div>
         </header>
     )
