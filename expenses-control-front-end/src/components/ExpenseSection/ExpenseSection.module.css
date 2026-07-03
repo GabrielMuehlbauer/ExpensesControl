@@ -92,3 +92,10 @@
     background: var(--light-faded-yellowish-green);
     border-radius: 10px;
 }
+
+.expenseCount {
+    font-family: var(--font-family-accent);
+    font-size: 16px;
+    color: var(--light-yellowish-green);
+    margin-left: 10px;
+}

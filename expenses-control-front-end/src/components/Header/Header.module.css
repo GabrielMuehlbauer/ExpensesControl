@@ -36,6 +36,12 @@ header button {
     align-items: center;
     text-align: center;
     gap: 5px;
+    transition: all 0.3s ease-in-out;
+}
+
+header button:hover {
+    background-color: var(--light-yellowish-green);
+    color: var(--dark-gray);
 }
 
 header button img {

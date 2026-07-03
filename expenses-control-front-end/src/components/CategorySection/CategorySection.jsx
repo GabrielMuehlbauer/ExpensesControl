@@ -41,6 +41,10 @@ function CategorySection({ allCategories = [], categoryTotals = [], loading }) {
                     ) : (
                         <p>Nenhuma categoria registrada.</p>
                     )}
+
+                    <button className={styles.categoryCardAddButton} onClick={() => alert('Função de adicionar categoria ainda não implementada.')}>
+                                +
+                            </button>
                 </div>
             </div>
         </section>
