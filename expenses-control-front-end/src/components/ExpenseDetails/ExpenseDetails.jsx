@@ -4,7 +4,7 @@ import edit from '../../assets/images/edit.svg';
 import trash from '../../assets/images/delete.svg';
 import api from '../../services/api';
 
-function ExpenseDetails({ expense, onClose, onExpenseDeleted }) {
+function ExpenseDetails({ expense, onClose, onExpenseDeleted, onEdit }) {
   // Proteção: Se por algum motivo o componente abrir sem uma despesa, não deixa o app crashar
   if (!expense) return (
     <>
@@ -37,13 +37,37 @@ function ExpenseDetails({ expense, onClose, onExpenseDeleted }) {
     }
   }
 
+  // 1. Lógica de cores do status (igual ao ExpenseRow)
+  const isPaga = expense.status === 'PAGA';
+  const statusColor = isPaga ? '#abd035' : '#993f3f'; 
+  const statusBg = isPaga ? 'rgba(0, 230, 118, 0.1)' : 'rgba(255, 183, 77, 0.1)';
+
   return (
     <div className={styles.container}>
 
       {/* Cabeçalho com o botão de fechar e a Categoria estilo "tag" */}
       <div className={styles.header}>
         <h2 className={styles.title}>{expense.title}</h2>
-        <p className={styles.date}>{new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(expense.date))}</p>
+
+        {/* Agrupamos a Data e o Status para ficarem alinhados lado a lado */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '4px' }}>
+          <p className={styles.date} style={{ margin: 0 }}>
+            {new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(expense.date))}
+          </p>
+
+          {/* Etiqueta de Status */}
+          <span style={{
+            fontSize: '0.75rem',
+            padding: '4px 10px',
+            borderRadius: '8px',
+            backgroundColor: statusBg,
+            color: statusColor,
+            fontWeight: 'bold',
+            textTransform: 'uppercase'
+          }}>
+            {expense.status || 'PENDENTE'}
+          </span>
+        </div>
       </div>
 
       <div className={styles.content}>
@@ -63,11 +87,13 @@ function ExpenseDetails({ expense, onClose, onExpenseDeleted }) {
 
       {/* Botões de Ação para o CRUD completo (Editar e Eliminar) */}
       <div className={styles.actions}>
-        <button className={styles.editButton}>
-          <img src={edit} alt="" />
+        <button className={styles.editButton} onClick={() => onEdit(expense)}>
+          {/* Certifique-se de que a variável 'edit' está importada no topo do ficheiro */}
+          <img src={edit} alt="Editar" />
         </button>
         <button className={styles.deleteButton} onClick={handleDelete}>
-          <img src={trash} alt="" />
+          {/* Certifique-se de que a variável 'trash' está importada no topo do ficheiro */}
+          <img src={trash} alt="Excluir" />
         </button>
       </div>
 

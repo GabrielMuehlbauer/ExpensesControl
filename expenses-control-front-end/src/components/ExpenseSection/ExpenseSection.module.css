@@ -29,6 +29,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 15px;
+    position: relative;
 }
 
 .filterButton {
@@ -98,4 +99,65 @@
     font-size: 16px;
     color: var(--light-yellowish-green);
     margin-left: 10px;
+}
+
+.filterDropdown {
+    position: absolute;
+    top: 50px; /* Posiciona logo abaixo do botão */
+    right: 0; /* Alinha à direita, embaixo do botão */
+    z-index: 100; /* Garante que fique por cima da lista de despesas */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background-color: rgba(242, 242, 242, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid var(--light-yellowish-green);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3); /* Uma sombra forte para destacar que está flutuando */
+    width: 250px; /* Um tamanho fixo elegante para mobile/desktop */
+}
+
+.closeFilterButton {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    color: var(--faded-yellowish-green);
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.closeFilterButton p {
+    font-size: 30px;
+    line-height: 1;
+    margin: 0;
+}
+
+.filterInput {
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--faded-yellowish-green);
+    background-color: var(--light-yellowish-green);
+    color: var(--faded-yellowish-green);
+    font-family: var(--font-family-accent);
+    outline: none;
+    width: 100%;
+}
+
+.clearButton {
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color: var(--faded-yellowish-green);
+    color: var(--light-yellowish-green);
+    font-family: var(--font-family-accent);
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.clearButton:hover {
+    background-color: var(--yellowish-green);
 }

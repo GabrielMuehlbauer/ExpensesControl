@@ -8,6 +8,7 @@ import WideButton from '../../components/WideButton/WideButton';
 import Input from '../../components/Input/Input';
 import ExpenseForm from '../../components/ExpenseForm/ExpenseForm';
 import ExpenseDetails from '../../components/ExpenseDetails/ExpenseDetails';
+import CategoryForm from '../../components/CategoryForm/CategoryForm';
 import api from '../../services/api';
 
 function Dashboard() {
@@ -20,7 +21,16 @@ function Dashboard() {
     const [categoryTotals, setCategoryTotals] = useState([]);
     const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
-    
+    const [expenseToEdit, setExpenseToEdit] = useState(null);
+    const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+
+    // Função para editar uma despesa
+    function handleEdit(expense) {
+        setExpenseToEdit(expense); // Dizemos ao React: "Guarde essa despesa!"
+        setIsDetailsModalOpen(false);   // Fechamos o modal de Detalhes
+        setIsModalOpen(true);       // Abrimos o Formulário (usando o seu state real)
+    }
+
     // useEffect dispara assim que a tela abre
     useEffect(() => {
         async function fetchDashboardData() {
@@ -77,7 +87,8 @@ function Dashboard() {
             category: category || { name: 'Não encontrada' } // Adiciona um fallback caso a categoria não seja encontrada
         };
         setIsDetailsModalOpen(true);
-        setSelectedExpense(expenseWithCategoryDetails);   
+        setSelectedExpense(expenseWithCategoryDetails);
+        setExpenseToEdit(null); // Reseta a despesa a ser editada, caso o usuário tenha vindo de um estado de edição anterior
     }
 
     function handleCloseDetails() {
@@ -89,12 +100,16 @@ function Dashboard() {
             <main className={styles.dashboardContent}>
                 <Header valorTotal={totalGasto} />
                 <div className={styles.dashboardSections}>
-                    <CategorySection allCategories={allCategories} categoryTotals={categoryTotals} loading={loading} />
+                    <CategorySection allCategories={allCategories} categoryTotals={categoryTotals} loading={loading} onAddClick={() => setIsCategoryModalOpen(true)} />
                     <ExpenseSection onExpenseClick={handleOpenDetails} categories={allCategories} expenses={expenses} loading={loading} />
                 </div>
                 <WideButton text='Criar Despesa +' onClick={() => setIsModalOpen(true)} />
                 <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-                    <ExpenseForm onClose={() => setIsModalOpen(false)} onExpenseAdded={handleExpenseAdded} />
+                    <ExpenseForm
+                        onClose={() => setIsModalOpen(false)}
+                        onExpenseAdded={handleExpenseAdded}
+                        expenseToEdit={expenseToEdit}
+                    />
                 </Modal>
 
                 <Modal isOpen={isDetailsModalOpen} onClose={handleCloseDetails}>
@@ -103,8 +118,18 @@ function Dashboard() {
                         expense={selectedExpense}
                         onClose={handleCloseDetails}
                         onExpenseDeleted={handleExpenseDeleted}
+                        onEdit={handleEdit}
                     />
                 </Modal>
+
+                {isCategoryModalOpen && (
+                    <Modal isOpen={isCategoryModalOpen} onClose={() => setIsCategoryModalOpen(false)}>
+                        <CategoryForm
+                            onClose={() => setIsCategoryModalOpen(false)}
+                            onCategoryAdded={handleExpenseAdded} /* Chama a mesma função que atualiza o dashboard para re-renderizar a lista de categorias atualizada! */
+                        />
+                    </Modal>
+                )}
             </main>
         </>
     )

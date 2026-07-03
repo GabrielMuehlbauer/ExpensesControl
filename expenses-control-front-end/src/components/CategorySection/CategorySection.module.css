@@ -65,6 +65,6 @@
 }
 
 .categoryCardAddButton:hover {
-    background-color: var(--light-faded-yellowish-green);
+    background-color: var(--pastel-yellowish-green);
     color: var(--faded-yellowish-green);
 }

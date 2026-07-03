@@ -3,7 +3,8 @@ import api from '../../services/api';
 import styles from './CategorySection.module.css';
 import CategoryCard from '../CategoryCard/CategoryCard';
 
-function CategorySection({ allCategories = [], categoryTotals = [], loading }) {
+function CategorySection({ allCategories = [], categoryTotals = [], loading, onAddClick }) {
+
     return (
         <section className={styles.categorySection}>
             <div className={styles.categorySectionContent}>
@@ -42,7 +43,7 @@ function CategorySection({ allCategories = [], categoryTotals = [], loading }) {
                         <p>Nenhuma categoria registrada.</p>
                     )}
 
-                    <button className={styles.categoryCardAddButton} onClick={() => alert('Função de adicionar categoria ainda não implementada.')}>
+                    <button className={styles.categoryCardAddButton} onClick={onAddClick}>
                                 +
                             </button>
                 </div>
