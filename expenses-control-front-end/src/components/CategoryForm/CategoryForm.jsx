@@ -4,30 +4,42 @@ import styles from "./CategoryForm.module.css";
 import Input from "../Input/Input";
 import WideButton from "../WideButton/WideButton";
 
-function CategoryForm({ onClose, onCategoryAdded }) {
-    const [name, setName] = useState("");
+function CategoryForm({ onClose, onCategoryAdded, categoryToEdit }) {
+    const [name, setName] = useState(categoryToEdit ? categoryToEdit.name : "");
+    const [description, setDescription] = useState(categoryToEdit ? categoryToEdit.description : "");
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading(true);
 
+        const categoryData = { 
+            name: name,
+            description: description
+        };
+
         try {
-            // Rota POST /categories exigida pelo professor
-            await api.post("/categories", { name: name });
+            if (categoryToEdit) {
+                await api.put(`/categories/${categoryToEdit.id}`, categoryData);
+            } else {
+                // Rota POST /categories
+                await api.post("/categories", categoryData);
+            }
             
             // Avisa o dashboard para atualizar as categorias na tela
             if (onCategoryAdded) {
                 onCategoryAdded();
             }
-
+ 
             if (onClose) {
                 onClose();
             }
         } catch (error) {
             const apiError = error.response?.data?.error;
-            console.error("Erro ao criar categoria:", apiError || error);
-            alert(apiError || "Erro ao adicionar categoria. Tente novamente.");
+            const action = categoryToEdit ? "salvar" : "criar";
+            console.error(`Erro ao ${action} categoria:`, apiError || error);
+            // Mostra uma mensagem amigável para o usuário, sem expor detalhes técnicos do erro.
+            alert(`Ocorreu um erro ao tentar ${action} a categoria. Por favor, tente novamente mais tarde.`);
         } finally {
             setLoading(false);
         }
@@ -36,7 +48,7 @@ function CategoryForm({ onClose, onCategoryAdded }) {
     return (
         <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.header}>
-                <h2 className={styles.title}><i>Nova</i> Categoria</h2>
+                <h2 className={styles.title}><i>{categoryToEdit ? "Editar" : "Nova"}</i> Categoria</h2>
             </div>
             <div className={styles.inputGroup}>
                 <Input 
@@ -47,10 +59,18 @@ function CategoryForm({ onClose, onCategoryAdded }) {
                     onChange={(e) => setName(e.target.value)} 
                     required
                 />
+                <Input 
+                    label="Descrição da Categoria:" 
+                    type="text" 
+                    placeholder="Ex: Gastos com passagens, hotéis..." 
+                    value={description} 
+                    onChange={(e) => setDescription(e.target.value)} 
+                    required
+                />
             </div>
             <WideButton 
                 type="submit" 
-                text={loading ? "Adicionando..." : "Adicionar Categoria"} 
+                text={loading ? "Processando..." : (categoryToEdit ? "Salvar Alterações" : "Adicionar Categoria")} 
                 disabled={loading}
             />
         </form>

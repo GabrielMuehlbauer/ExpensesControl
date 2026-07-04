@@ -1,6 +1,8 @@
 import { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Input from '../../components/Input/Input';
+import WideButton from '../../components/WideButton/WideButton';
 import styles from './Login.module.css';
 
 function Login() {
@@ -55,48 +57,41 @@ function Login() {
             <div className={styles.loginCard}>
                 {/* Título com a identidade visual do projeto */}
                 <h1 className={styles.logoTitle}>
-                    Expenses <span>Control</span>
+                    Expenses <i>Control</i>
                 </h1>
                 <p className={styles.subtitle}>Gerencie suas finanças de forma simples e elegante</p>
 
-                {/* Requisito: Feedback Visual de Erros */}
+                {/* Feedback Visual de Erros */}
                 {error && <div className={styles.errorAlert}>{error}</div>}
 
                 <form onSubmit={handleLogin} className={styles.loginForm}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="email">E-mail</label>
-                        <input 
-                            type="email" 
-                            id="email"
-                            placeholder="seuemail@exemplo.com"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            disabled={loading}
-                            required 
-                        />
-                    </div>
-
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="password">Senha</label>
-                        <input 
-                            type="password" 
-                            id="password"
-                            placeholder="Digite sua senha"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            disabled={loading}
-                            required 
-                        />
-                    </div>
+                    <Input
+                        label="E-mail"
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@exemplo.com"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                        disabled={loading}
+                        required
+                    />
+                    <Input
+                        label="Senha"
+                        type="password"
+                        id="password"
+                        placeholder="Digite sua senha"
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                        disabled={loading}
+                        required
+                    />
 
                     {/* Requisito: Loading State no Botão */}
-                    <button 
-                        type="submit" 
-                        className={styles.loginButton}
+                    <WideButton
+                        type="submit"
                         disabled={loading}
-                    >
-                        {loading ? 'Carregando...' : 'Entrar'}
-                    </button>
+                        text={loading ? 'Carregando...' : 'Entrar'}
+                    />
                 </form>
             </div>
         </div>

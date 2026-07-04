@@ -1,0 +1,51 @@
+.header {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-family: var(--font-family-header);
+    font-size: 35px;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 4px;
+}
+
+.content {
+    margin-bottom: 25px;
+}
+
+.description {
+    font-family: var(--font-family-body);
+    text-align: justify;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.actions button {
+    padding: 15px 70px;
+    border-radius: 30px;
+    border: 1px solid var(--faded-yellowish-green);
+    cursor: pointer;
+}
+
+.deleteButton {
+    background-color: #993f3f;
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+    background-color: #b94f4f;
+}
+
+.editButton {
+    background-color: var(--faded-yellowish-green);
+    transition: all 0.3s ease-in-out;
+}
+
+.editButton:hover {
+    background-color: var(--light-faded-yellowish-green);
+}

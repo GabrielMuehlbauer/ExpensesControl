@@ -1,8 +1,8 @@
 import styles from './CategoryCard.module.css';
 
-function CategoryCard({ nome, valor }) {
+function CategoryCard({ nome, valor, onClick }) {
     return (
-        <div className={styles.categoryCard}>
+        <div className={styles.categoryCard} onClick={onClick}>
             <p>{nome}</p>
             <div className={styles.valueContainer}>
                 {/* Lógica de formatação mais segura para evitar quebras se o valor não for um número */}

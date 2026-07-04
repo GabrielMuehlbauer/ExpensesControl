@@ -3,7 +3,7 @@ import api from '../../services/api';
 import styles from './CategorySection.module.css';
 import CategoryCard from '../CategoryCard/CategoryCard';
 
-function CategorySection({ allCategories = [], categoryTotals = [], loading, onAddClick }) {
+function CategorySection({ allCategories = [], categoryTotals = [], loading, onAddClick, onCategoryClick }) {
 
     return (
         <section className={styles.categorySection}>
@@ -36,6 +36,7 @@ function CategorySection({ allCategories = [], categoryTotals = [], loading, onA
                                     key={category.id}
                                     nome={category.name}
                                     valor={valor}
+                                    onClick={() => onCategoryClick(category)}
                                 />
                             );
                         })

@@ -93,9 +93,19 @@
 .deleteButton {
     background-color: #993f3f;
     border: 1px solid var(--faded-yellowish-green);
+    transition: all 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+    background-color: #b94f4f;
 }
 
 .editButton {
     background-color: var(--faded-yellowish-green);
     border: 1px solid var(--faded-yellowish-green);
+    transition: all 0.3s ease-in-out;
+}
+
+.editButton:hover {
+    background-color: var(--light-faded-yellowish-green);
 }
