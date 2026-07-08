@@ -85,7 +85,7 @@
 }
 
 .actions button {
-    padding: 15px 70px;
+    padding: 15px 20%;
     border-radius: 30px;
     border: 1px solid var(--faded-yellowish-green);
 }

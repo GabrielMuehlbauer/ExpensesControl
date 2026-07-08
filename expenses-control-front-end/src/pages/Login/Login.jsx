@@ -92,6 +92,19 @@ function Login() {
                         disabled={loading}
                         text={loading ? 'Carregando...' : 'Entrar'}
                     />
+
+                    {/* Novo: Opção para Cadastrar */}
+                    <div style={{ marginTop: '20px', textAlign: 'center' }}>
+                        <p style={{ color: '#888', fontSize: '0.9rem', fontFamily: 'var(--font-family-accent)' }}>
+                            Ainda não tem conta?{' '}
+                            <span 
+                                style={{ color: 'var(--yellowish-green)', cursor: 'pointer', fontWeight: 'bold' }}
+                                onClick={() => navigate('/register')}
+                            >
+                                Cadastre-se aqui
+                            </span>
+                        </p>
+                    </div>
                 </form>
             </div>
         </div>

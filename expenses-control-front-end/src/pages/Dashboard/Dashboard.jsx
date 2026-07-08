@@ -9,6 +9,7 @@ import ExpenseForm from '../../components/ExpenseForm/ExpenseForm';
 import ExpenseDetails from '../../components/ExpenseDetails/ExpenseDetails';
 import CategoryForm from '../../components/CategoryForm/CategoryForm';
 import CategoryDetails from '../../components/CategoryDetails/CategoryDetails';
+import Footer from '../../components/Footer/Footer';
 import api from '../../services/api';
 
 function Dashboard() {
@@ -173,6 +174,7 @@ function Dashboard() {
                     </Modal>
                 )}
             </main>
+            <Footer />
         </>
     )
 }

@@ -4,6 +4,7 @@ import { AuthProvider, AuthContext } from './contexts/AuthContext';
 import { useContext } from 'react';
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Login from "./pages/Login/Login";
+import Register from './pages/Register/Register';
 import './styles/global.css';
 
 // Componente para proteger rotas
@@ -19,6 +20,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
+
+          <Route path="/register" element={<Register />} />
+
           <Route 
             path="/" 
             element={
