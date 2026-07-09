@@ -1,4 +1,6 @@
-# ExpensesControl 💸
+![Capa](./expenses-control-front-end/src/assets/images/capa-github.png)
+
+# Expenses Control
 
 Aplicação Web full-stack para Controle de Despesas Pessoais, com front-end em React e back-end em Node.js.
 
@@ -17,7 +19,7 @@ Aplicação Web full-stack para Controle de Despesas Pessoais, com front-end em 
 
 ## Sobre o Projeto
 
-O **ExpensesControl** é uma ferramenta desenhada para ajudar usuários a gerenciar suas finanças pessoais de forma simples e elegante. A plataforma permite o cadastro de despesas, sua categorização e a visualização de resumos e totais através de um dashboard interativo.
+O **Expenses Control** é uma ferramenta desenhada para ajudar usuários a gerenciar suas finanças pessoais de forma simples e elegante. A plataforma permite o cadastro de despesas, sua categorização e a visualização de resumos e totais através de um dashboard interativo.
 
 Este repositório contém o código do **front-end (cliente web)**. O back-end (API) está em um repositório separado e pode ser acessado [aqui](https://github.com/GabrielMuehlbauer/expenses-control-api.git).
 
@@ -49,7 +51,6 @@ Este repositório contém o código do **front-end (cliente web)**. O back-end (
 
 ```
 /
-├── expenses-control-back-end/  (Diretório do Back-end, nome presumido)
 └── expenses-control-front-end/ (Diretório do Front-end)
     ├── public/
     ├── src/
@@ -68,7 +69,7 @@ Siga os passos abaixo para configurar e executar o projeto em seu ambiente local
 
 - [Node.js](https://nodejs.org/en/) (versão 18.x ou superior)
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
-- A API Back-end do ExpensesControl deve estar em execução.
+- A API Back-end do Expenses Control deve estar em execução.
 
 ### Configurando o Back-end
 
